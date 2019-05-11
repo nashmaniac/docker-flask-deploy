@@ -1,0 +1,18 @@
+sudo: required
+services:
+- docker
+env:
+  global:
+  - REGISTRY_USER=nashmaniac
+  - secure: mMXyfxubMUu2Q4YjLxobupPlNGOXkMZByxtEGfqoGqnDpv5UE5RhpDvWy9lgQrA76K0dWjM6J0qiFBD2vqIc8Dr/+AwXxWCxeXt5lvn9X/rJlLC1tGx3uYpx+/yv01R49gkVKBm9BPgb82D9P1V8HdrlMXLp2rOBHSTFI/MmeoX4ocBeWBEW4f9m9dm9SWIWERtHuVeasWIfrm3ZEFiz5WX0lW7ITr6N3I2pcTh+ovkvmMPj60yGmGU52P1HWKxEGba4bA41A752PhquGUZyjauWSixVrdw3SmGkKRU5GSS7HXjGWV7rb02geQwiIOJR9PaOyTuTeyOYjGRZJWfS1vKoTENPbR1YOXjwRUXx0cHaStuvFJ2xGljHJH3Axv+APJcm+zi7726K1CORYJOjw3iV3eu5BjEOkLIn8sYuwOVtoWN/8JLnEXySyOjzS6NexaL01kZv48ipgLnL9ajFx+zd8kKy8gbuVELZXIaZdC2P3tZQGR0qa4nWx3ci+bnVjE8VY5IIz+HPsTTTZ6BpjHXJxRaB72meI1pkWCnzoPqThzsMlBhAd2YWCvHFSfb0wF4mLpmDb9rGAnZzQ1JpPix/O/Ib0v8MzY5c2CQ3eN9clFDq7znvh3P39h50xYH9eZ+Z4mnWVko+/lkuj5JJ8iCt+EatrzON2+5z2dTdHc4=
+script:
+- docker build --tag nashmaniac/docker-flask-deploy .
+after_script:
+- docker images
+before_deploy:
+- docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  provider: script
+  script: docker push nashmaniac/docker-flask-deploy
+  on:
+    branch: master
