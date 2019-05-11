@@ -20,6 +20,11 @@ def hello_final():
     return jsonify(dict(message='Final Route added'))
 
 
+@app.route('/github')
+def hello_final():
+    return jsonify(dict(message='Github Route added'))
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
