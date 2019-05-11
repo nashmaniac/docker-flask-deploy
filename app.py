@@ -21,7 +21,7 @@ def hello_final():
 
 
 @app.route('/github')
-def hello_final():
+def hello_github():
     return jsonify(dict(message='Github Route added'))
 
 
