@@ -11,6 +11,11 @@ def hello_world():
 def hello_home():
     return jsonify(dict(message='Hello Home'))
 
+@app.route('/about')
+def hello_about():
+    return jsonify(dict(message='Hello About'))
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
