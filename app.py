@@ -15,6 +15,10 @@ def hello_home():
 def hello_about():
     return jsonify(dict(message='Hello About'))
 
+@app.route('/final')
+def hello_final():
+    return jsonify(dict(message='Final Route added'))
+
 
 
 if __name__ == '__main__':
